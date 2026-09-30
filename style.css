@@ -1,0 +1,275 @@
+/* ==========================================================
+   DÓLAR IA — Landing page
+   Para mudar as cores, edite as variáveis abaixo.
+   ========================================================== */
+:root {
+  --bg: #000;
+  --bg-card: #07100b;
+  --green: #00e676;
+  --green-soft: rgba(0, 230, 118, .16);
+  --green-line: rgba(0, 230, 118, .28);
+  --text: #f2f5f3;
+  --muted: #9aa8a0;
+  --radius: 18px;
+  --font: "Sora", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, p, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+
+section, footer {
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+  padding-left: 22px;
+  padding-right: 22px;
+}
+
+/* ---------- Primeira dobra ---------- */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 56px;
+  padding-bottom: 56px;
+  isolation: isolate;
+}
+
+/* glow de fundo */
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 6%;
+  left: 50%;
+  width: min(720px, 130vw);
+  height: 420px;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(0, 230, 118, .22), transparent 72%);
+  animation: breathe 6s ease-in-out infinite;
+}
+
+.brand {
+  font-size: clamp(3rem, 15vw, 6.4rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -.03em;
+  color: var(--text);
+  margin-bottom: 30px;
+}
+.brand span {
+  color: var(--green);
+  text-shadow: 0 0 28px rgba(0, 230, 118, .55), 0 0 70px rgba(0, 230, 118, .3);
+}
+
+.headline {
+  max-width: 560px;
+  font-size: clamp(1.3rem, 5.4vw, 1.9rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -.01em;
+  margin-bottom: 30px;
+}
+
+.checks {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 38px;
+  text-align: left;
+}
+.checks li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+}
+.checks svg {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--green-soft);
+  stroke: var(--green);
+  stroke-width: 3;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- Botão ---------- */
+.btn {
+  display: inline-block;
+  width: 100%;
+  max-width: 420px;
+  padding: 20px 26px;
+  border-radius: 14px;
+  background: var(--green);
+  color: #001b0c;
+  font-weight: 800;
+  font-size: 1.02rem;
+  letter-spacing: .02em;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 0 0 1px rgba(0, 230, 118, .5), 0 10px 40px rgba(0, 230, 118, .35);
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+  box-shadow: 0 0 0 1px rgba(0, 230, 118, .7), 0 14px 54px rgba(0, 230, 118, .5);
+}
+.btn:active { transform: translateY(0); }
+.btn:focus-visible, .card:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+}
+
+/* ---------- O que você recebe ---------- */
+.receive {
+  padding-top: 40px;
+  padding-bottom: 72px;
+}
+.receive h2 {
+  text-align: center;
+  font-size: clamp(1.5rem, 6vw, 2rem);
+  letter-spacing: -.02em;
+  margin-bottom: 30px;
+}
+
+.cards {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+
+.card {
+  padding: 26px 24px;
+  border-radius: var(--radius);
+  background: linear-gradient(160deg, var(--bg-card), #000);
+  border: 1px solid var(--green-line);
+  box-shadow: 0 0 34px rgba(0, 230, 118, .07), inset 0 0 40px rgba(0, 230, 118, .03);
+}
+.card svg {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 16px;
+  stroke: var(--green);
+  stroke-width: 1.8;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 8px rgba(0, 230, 118, .55));
+}
+.card h3 {
+  font-size: .86rem;
+  font-weight: 800;
+  letter-spacing: .05em;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+.card p { color: var(--muted); font-size: .98rem; }
+
+/* Card em destaque (diferencial) */
+.card--featured {
+  position: relative;
+  background: linear-gradient(160deg, #0a2114, #000 80%);
+  border-color: var(--green);
+  box-shadow: 0 0 0 1px rgba(0, 230, 118, .35), 0 0 52px rgba(0, 230, 118, .22), inset 0 0 50px rgba(0, 230, 118, .07);
+}
+.card--featured h3 { font-size: .95rem; }
+.card--featured p { color: var(--text); }
+.badge {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--green);
+  color: #001b0c;
+  font-size: .74rem;
+  font-weight: 800;
+}
+
+/* ---------- CTA final ---------- */
+.final {
+  position: relative;
+  text-align: center;
+  padding-top: 72px;
+  padding-bottom: 88px;
+  isolation: isolate;
+}
+.final::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 auto 50%;
+  width: min(760px, 140vw);
+  height: 100%;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(0, 230, 118, .14), transparent 75%);
+}
+.final h2 {
+  font-size: clamp(1.7rem, 7vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -.02em;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+.final p {
+  max-width: 460px;
+  margin: 0 auto 32px;
+  color: var(--muted);
+}
+
+/* ---------- Rodapé ---------- */
+footer {
+  border-top: 1px solid var(--green-line);
+  padding-top: 28px;
+  padding-bottom: 36px;
+  text-align: center;
+}
+footer strong { color: var(--green); font-size: 1.05rem; }
+footer p {
+  max-width: 520px;
+  margin: 8px auto 0;
+  color: #6d7a73;
+  font-size: .8rem;
+  line-height: 1.55;
+}
+
+/* ---------- Tablet / desktop ---------- */
+@media (min-width: 680px) {
+  .cards { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .card { padding: 30px 28px; }
+  .card--featured { grid-column: 1 / -1; }
+}
+
+/* ---------- Animação única e sutil ---------- */
+@keyframes breathe {
+  0%, 100% { opacity: .75; }
+  50%      { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero::before { animation: none; }
+  .btn { transition: none; }
+  html { scroll-behavior: auto; }
+}
